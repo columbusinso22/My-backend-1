@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 index.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5173/",
     credentials: true,
   }),
 );
@@ -29,6 +29,7 @@ index.get("/", (req, res) => {
 });
 
 index.use("/api/user", userRoute);
+index.use(cors());
 index.use("/api/product", productRoute);
 
 // Database Connection
