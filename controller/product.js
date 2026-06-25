@@ -43,11 +43,15 @@ exports.getAllProduct = async (req, res) => {
     const product = await Product.find()
       .populate("createdBy", "userName email country gender")
       .sort({ createdAt: -1 });
+
     res.status(201).json({
       success: true,
       message: "product retrieved successfully",
       count: product.length,
-      product,
+      product: {
+        data: product,
+        total: product.length,
+      },
     });
   } catch (error) {
     res.status(500).json({
